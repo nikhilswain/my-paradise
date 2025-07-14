@@ -271,7 +271,7 @@ export default function Component() {
             <h1 className="text-4xl md:text-6xl font-black mb-8 bg-gradient-to-r from-white via-indigo-200 via-purple-200 via-pink-200 to-yellow-200 bg-clip-text text-transparent leading-tight">
               {hero.title}
             </h1>
-            <p className="text-xl md:text-3xl text-slate-300 mb-12 max-w-3xl mx-auto font-medium">
+            <p className="text-xl md:text-3xl text-slate-300 mb-4 max-w-3xl mx-auto font-medium">
               {hero.subtitle}
             </p>
           </div>

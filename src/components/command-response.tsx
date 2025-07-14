@@ -38,13 +38,13 @@ export function CommandResponse({ response }: CommandResponseProps) {
 
   const getButtonColor = (color: string) => {
     const colors = {
-      green: "border-green-400 hover:border-green-300",
-      red: "border-red-400 hover:border-red-300",
-      yellow: "border-yellow-400 hover:border-yellow-300",
-      blue: "border-blue-400 hover:border-blue-300",
-      pink: "border-pink-400 hover:border-pink-300",
-      purple: "border-purple-400 hover:border-purple-300",
-      emerald: "border-emerald-400 hover:border-emerald-300",
+      green: "border-green-400 hover:border-green-300 text-white",
+      red: "border-red-400 hover:border-red-300 text-white",
+      yellow: "border-yellow-400 hover:border-yellow-300 text-white",
+      blue: "border-blue-400 hover:border-blue-300 text-white",
+      pink: "border-pink-400 hover:border-pink-300 text-white",
+      purple: "border-purple-400 hover:border-purple-300 text-white",
+      emerald: "border-emerald-400 hover:border-emerald-300 text-white",
     };
     return (
       colors[color as keyof typeof colors] ||
@@ -53,7 +53,7 @@ export function CommandResponse({ response }: CommandResponseProps) {
   };
 
   return (
-    <Card className="bg-gradient-to-br from-slate-900/80 to-slate-800/80 border-slate-700 backdrop-blur-sm p-6">
+    <Card className="bg-gradient-to-br from-slate-900/80 to-slate-800/80 border-slate-700 backdrop-blur-sm p-6 min-h-[400px] max-h-[500px]">
       <div className="flex items-center gap-3 mb-4">
         <div className="w-12 h-12 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full flex items-center justify-center">
           <IconComponent className="w-6 h-6 text-white" />

@@ -60,10 +60,10 @@ function MemberAvatar({
           <div
             className={`absolute inset-0 bg-gradient-to-r ${member.color} rounded-full blur-md opacity-60 group-hover:opacity-100 transition-opacity duration-300 animate-pulse`}
           />
-          <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-slate-600 group-hover:border-transparent transition-all duration-300 transform">
+          <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-slate-600 group-hover:border-transparent transition-all duration-300 transform">
             <img
-              src={member.avatar || "/placeholder.svg"}
-              alt={member.name}
+              src={member?.avatar}
+              alt={member?.name}
               className="w-full h-full object-cover"
             />
           </div>
@@ -118,7 +118,7 @@ export function MemberSection({ members }: MemberSectionProps) {
         setActiveMemberName(members[currentAutoCycleIndexRef.current].name);
         currentAutoCycleIndexRef.current =
           (currentAutoCycleIndexRef.current + 1) % totalMembers;
-      }, 4000); // Cycle every 4 seconds
+      }, 2000); // Cycle every 2 seconds
     },
     [members, totalMembers]
   );
@@ -183,7 +183,7 @@ export function MemberSection({ members }: MemberSectionProps) {
   const isAnyAvatarActive = activeMemberName !== null; // Check if any avatar is currently active (manual or auto)
 
   return (
-    <div className="relative w-full flex items-center justify-center py-8">
+    <div className="relative w-full flex items-center justify-center pt-20">
       <div
         className={`relative flex items-center justify-center ${
           !isAnyAvatarActive && !isCircleHovered ? "animate-circle-rotate" : ""

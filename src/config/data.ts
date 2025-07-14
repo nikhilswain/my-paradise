@@ -137,14 +137,18 @@ export const siteConfig = {
 
   bots: [
     {
+      name: "zero two",
+      description: "Anime gifs and nekos",
+      color: "text-pink-400",
+    },
+    {
       name: "MEE6",
       description: "Leveling & Moderation",
       color: "text-blue-400",
     },
-    { name: "ZeroTwo", description: "Anime & Fun", color: "text-pink-400" },
     {
-      name: "Carl-bot",
-      description: "Automod & Utilities",
+      name: "Arcane",
+      description: "Leveling & Role Management",
       color: "text-green-400",
     },
     {
@@ -157,20 +161,16 @@ export const siteConfig = {
       description: "Server Management",
       color: "text-purple-400",
     },
-    { name: "Groovy", description: "Music Player", color: "text-red-400" },
-    { name: "Mudae", description: "Waifu Game", color: "text-pink-300" },
     {
-      name: "Pokétwo",
-      description: "Pokémon Catching",
-      color: "text-blue-300",
+      name: "TicTacToe",
+      description: "Play Tic Tac Toe",
+      color: "text-cyan-400",
     },
     {
-      name: "Ticket Tool",
-      description: "Support System",
-      color: "text-orange-400",
+      name: "Truth or Dare",
+      description: "Fun Game Bot",
+      color: "text-indigo-400",
     },
-    { name: "YAGPDB", description: "Custom Commands", color: "text-cyan-400" },
-    { name: "Rythm", description: "Music Bot", color: "text-indigo-400" },
     {
       name: "Tatsu",
       description: "Social Features",
