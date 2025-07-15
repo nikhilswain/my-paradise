@@ -14,15 +14,15 @@ const iconMap = {
 interface CommandResponse {
   type: string;
   title: string;
-  content: string;
-  icon: any;
+  content?: string;
+  icon?: any;
   color: string;
   progress?: number;
   duration?: string;
   currentTime?: string;
   image?: string;
   details?: any;
-  buttons: Array<{
+  buttons?: Array<{
     label: string;
     icon: string;
     color: string;
@@ -64,12 +64,14 @@ export function CommandResponse({ response }: CommandResponseProps) {
         </div>
       </div>
 
-      <div className="bg-slate-950/50 rounded-lg p-4 mb-4">
+      <div className="bg-slate-950/50 rounded-lg p-4 mb-4 overflow-auto">
         <div className="flex items-center gap-2 mb-2">
           <IconComponent className={`w-4 h-4 ${response.color}`} />
           <span className={response.color}>{response.title}</span>
         </div>
-        <p className="text-white font-medium mb-2">{response.content}</p>
+        <p className="text-white font-medium mb-2 whitespace-pre-line">
+          {response.content}
+        </p>
 
         {/* Music Player */}
         {response.type === "music" && response.progress && (
@@ -88,16 +90,10 @@ export function CommandResponse({ response }: CommandResponseProps) {
 
         {/* Rank Display */}
         {response.type === "rank" && response.details && (
-          <div className="space-y-2 mt-2">
+          <div className="space-y-2 mt-2 overflow-auto">
             <div className="flex justify-between text-sm">
-              <span className="text-slate-400">XP:</span>
-              <span className="text-white">{response.details.xp}</span>
-            </div>
-            <div className="flex justify-between text-sm">
-              <span className="text-slate-400">Next Level:</span>
-              <span className="text-slate-300">
-                {response.details.nextLevel}
-              </span>
+              <span className="text-slate-400">Level:</span>
+              <span className="text-slate-300">{response.details.level}</span>
             </div>
           </div>
         )}
@@ -106,27 +102,16 @@ export function CommandResponse({ response }: CommandResponseProps) {
         {response.type === "interaction" && response.image && (
           <div className="mt-3">
             <img
-              src={response.image || "/placeholder.svg"}
+              src={response.image || ""}
               alt="Interaction"
-              className="w-full h-32 object-cover rounded-lg"
+              className="w-full h-auto object-cover rounded-lg"
             />
-          </div>
-        )}
-
-        {/* Reward Details */}
-        {response.type === "reward" && response.details && (
-          <div className="space-y-1 mt-2 text-sm">
-            <div className="text-emerald-400 font-semibold">
-              {response.details.coins}
-            </div>
-            <div className="text-yellow-400">{response.details.streak}</div>
-            <div className="text-slate-300">{response.details.total}</div>
           </div>
         )}
       </div>
 
       <div className="grid grid-cols-2 gap-3">
-        {response.buttons.map((button, index) => {
+        {response?.buttons?.map((button, index) => {
           const ButtonIcon = iconMap[button.icon as keyof typeof iconMap];
           return (
             <Button

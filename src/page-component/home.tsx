@@ -17,7 +17,7 @@ export default function Component() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [scrollY, setScrollY] = useState(0);
   const [typedText, setTypedText] = useState("");
-  const [currentCommandIndex, setCurrentCommandIndex] = useState(0);
+  const [currentCommandIndex, setCurrentCommandIndex] = useState(1);
   const heroRef = useRef<HTMLElement>(null);
 
   const { hero, members, commands, bots, footer } = siteConfig;
@@ -68,6 +68,21 @@ export default function Component() {
   const parallaxOffset = scrollY * 0.5;
   const mouseParallaxX = (mousePosition.x - window.innerWidth / 2) * 0.01;
   const mouseParallaxY = (mousePosition.y - window.innerHeight / 2) * 0.01;
+
+  const animateAndRedirect = (element: HTMLElement, url: string) => {
+    if (!element) return;
+
+    // Apply crazy animation
+    element.style.transform = "scale(0.9) rotate(-5deg)";
+    setTimeout(() => {
+      element.style.transform = "scale(1.25) rotate(5deg)";
+      setTimeout(() => {
+        element.style.transform = "scale(1.1) rotate(0deg)";
+        // Redirect after animation finishes
+        window.open(url, "_blank");
+      }, 100);
+    }, 100);
+  };
 
   return (
     <div className="min-h-screen bg-slate-950 text-white overflow-hidden">
@@ -152,20 +167,34 @@ export default function Component() {
           }
         }
 
-        @keyframes wizard-shimmer {
-          0% {
-            background-position: 0% 50%;
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-          }
-          50% {
-            background-position: 100% 50%;
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
-          }
-          100% {
-            background-position: 0% 50%;
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-          }
-        }
+        @keyframes wizard-magic {
+  0% {
+    transform: translateY(0) scale(1);
+    filter: hue-rotate(0deg) blur(0px);
+    letter-spacing: 0.05em;
+  }
+  25% {
+    transform: translateY(-1px) scale(1.02);
+    filter: hue-rotate(20deg) blur(0.3px);
+    letter-spacing: 0.07em;
+  }
+  50% {
+    transform: translateY(1px) scale(0.98);
+    filter: hue-rotate(-20deg) blur(0.5px);
+    letter-spacing: 0.1em;
+  }
+  75% {
+    transform: translateY(-1px) scale(1.01);
+    filter: hue-rotate(10deg) blur(0.2px);
+    letter-spacing: 0.06em;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    filter: hue-rotate(0deg) blur(0px);
+    letter-spacing: 0.05em;
+  }
+}
+
 
         @keyframes circle-rotate {
           from {
@@ -242,33 +271,14 @@ export default function Component() {
             </div>
 
             {/* Server Name */}
-            <h2
-              className="text-5xl md:text-7xl font-black mt-8 bg-gradient-to-r from-white via-indigo-200 to-purple-200 bg-clip-text text-transparent relative"
-              style={{
-                backgroundSize: "400% auto",
-                animation: "wizard-shimmer 5s linear infinite",
-              }}
-            >
+            <h2 className="text-5xl md:text-7xl font-black mt-8 bg-gradient-to-r from-white via-indigo-200 to-purple-200 bg-clip-text text-transparent relative leading-24">
               {hero.serverName}
-              {/* Subtle digital text shadow */}
-              <span
-                className="absolute inset-0 -z-10 opacity-30"
-                style={{
-                  textShadow: `
-                    0 0 10px rgba(99, 102, 241, 0.8),
-                    0 0 20px rgba(139, 92, 246, 0.6)
-                  `,
-                  animation: "pulse-glow 2s ease-in-out infinite",
-                }}
-              >
-                {hero.serverName}
-              </span>
             </h2>
           </div>
 
           <div className="text-center relative">
             {/* Main heading - no glitch */}
-            <h1 className="text-4xl md:text-6xl font-black mb-8 bg-gradient-to-r from-white via-indigo-200 via-purple-200 via-pink-200 to-yellow-200 bg-clip-text text-transparent leading-tight">
+            <h1 className="text-3xl md:text-5xl font-black mb-8 bg-gradient-to-r from-white via-indigo-200 via-purple-200 via-pink-200 to-yellow-200 bg-clip-text text-transparent leading-tight">
               {hero.title}
             </h1>
             <p className="text-xl md:text-3xl text-slate-300 mb-4 max-w-3xl mx-auto font-medium">
@@ -285,16 +295,8 @@ export default function Component() {
             <Button
               size="lg"
               className="group relative px-16 py-8 text-2xl font-black bg-gradient-to-r from-indigo-600 via-purple-600 via-pink-600 to-red-600 hover:from-indigo-500 hover:via-purple-500 hover:via-pink-500 hover:to-red-500 transform hover:scale-125 transition-all duration-500 hover:shadow-2xl hover:shadow-purple-500/50 overflow-hidden border-2 border-purple-400/50"
-              onClick={() => {
-                // Add crazy click animation
-                const button = document.activeElement as HTMLElement;
-                button.style.transform = "scale(0.9) rotate(-5deg)";
-                setTimeout(() => {
-                  button.style.transform = "scale(1.25) rotate(5deg)";
-                  setTimeout(() => {
-                    button.style.transform = "scale(1.1) rotate(0deg)";
-                  }, 100);
-                }, 100);
+              onClick={(e) => {
+                animateAndRedirect(e.currentTarget, hero.inviteLink);
               }}
             >
               <span className="relative z-10 flex items-center gap-4">
@@ -439,7 +441,7 @@ export default function Component() {
                   <div className="flex items-center gap-2 ml-4">
                     <Terminal className="w-4 h-4 text-slate-400" />
                     <span className="text-sm text-slate-400">
-                      Discord Terminal
+                      Some bot commands
                     </span>
                   </div>
                 </div>
@@ -543,16 +545,13 @@ export default function Component() {
             </div>
             <div className="text-left">
               <h3 className="font-bold text-white">{footer.channelName}</h3>
-              <p className="text-sm text-slate-400">by {footer.author}</p>
             </div>
           </div>
 
           <blockquote className="text-xl md:text-3xl font-bold text-slate-300 italic mb-4">
             "{footer.quote}"
           </blockquote>
-          <p className="text-slate-500 text-lg">
-            - {footer.author}, {footer.year}
-          </p>
+          <pre className="text-slate-500 text-lg">~ {footer.author}</pre>
 
           <div className="hidden lg:block">
             <SubtleWaves className="bottom-0 left-1/2 transform -translate-x-1/2 opacity-20" />

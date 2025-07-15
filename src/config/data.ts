@@ -1,4 +1,4 @@
-import { Music, Heart, Trophy, Gift } from "lucide-react";
+import { Music, Hand, Trophy, Gift } from "lucide-react";
 
 export const siteConfig = {
   hero: {
@@ -9,6 +9,7 @@ export const siteConfig = {
     channelName: "#my-paradise",
     channelPhoto: "/logo.gif",
     serverName: "My Paradise",
+    inviteLink: "https://discord.gg/WnHeehkPZN",
   },
 
   members: [
@@ -53,7 +54,7 @@ export const siteConfig = {
   ],
 
   commands: {
-    changeInterval: 1500,
+    changeInterval: 3000,
     list: [
       {
         command: "!play lofi hip hop",
@@ -73,18 +74,15 @@ export const siteConfig = {
         },
       },
       {
-        command: "!rank @username",
+        command: "owo top",
         response: {
           type: "rank",
-          title: "User Rank",
-          content: "Level 42 • Rank #15",
+          title: "Top 5 Rank",
+          content: `< Top 5 OwO Rankings for My Paradise >\n> Your Rank: 3\n>        you said owo 136 times!\n\n#1    @rexx_lapisss\n        said owo 709 times!\n#2    @amaju_03\n        said owo 156 times!\n#3    @2013_k_6\n        said owo 136 times!\n#4    @zero.02\n        said owo 34 times!\n#5    MEE6#4876\n        said owo 0 times!`,
           icon: Trophy,
           color: "text-yellow-400",
           details: {
-            level: 42,
-            xp: "15,420 XP",
-            nextLevel: "2,580 XP to next level",
-            rank: "#15",
+            level: 5,
           },
           buttons: [
             { label: "Leaderboard", icon: "Trophy", color: "yellow" },
@@ -93,43 +91,31 @@ export const siteConfig = {
         },
       },
       {
-        command: "!hug @ZeroTwo",
+        command: "z hug @rex",
         response: {
           type: "interaction",
-          title: "Hug Sent!",
-          content: "You hugged ZeroTwo! 🤗",
-          icon: Heart,
+          content: "",
+          icon: Hand,
+          title: "Z E R 0 gives a slap to Rex Lapis",
           color: "text-pink-400",
-          image: "/placeholder.svg?height=200&width=300",
+          image:
+            "https://images-ext-1.discordapp.net/external/lmbt29GQwkogl-MKoexpiP3Zv8zNNIsAZDpSuAPlt2E/https/cdn.otakugifs.xyz/gifs/slap/7882244dc2ba254c.gif?width=537&height=500",
           details: {
-            action: "Hug",
-            target: "@ZeroTwo",
-            message: "Sending virtual hugs!",
+            action: "slap",
+            target: "@rex",
+            message: "Sending virtual slap!",
           },
-          buttons: [
-            { label: "Hug Back", icon: "Heart", color: "pink" },
-            { label: "Pat", icon: "Users", color: "purple" },
-          ],
         },
       },
       {
-        command: "!daily reward",
+        command: "/meme",
         response: {
-          type: "reward",
-          title: "Daily Reward",
-          content: "You earned 500 coins! 💰",
+          type: "interaction",
+          title: "Random Meme",
+          content: "Used /meme command",
+          image: "/meme.png",
           icon: Gift,
           color: "text-emerald-400",
-          details: {
-            coins: "+500",
-            streak: "7 day streak!",
-            bonus: "Streak bonus: +100",
-            total: "Total: 12,450 coins",
-          },
-          buttons: [
-            { label: "Inventory", icon: "Gift", color: "emerald" },
-            { label: "Shop", icon: "Zap", color: "blue" },
-          ],
         },
       },
     ],
@@ -168,21 +154,20 @@ export const siteConfig = {
     },
     {
       name: "Truth or Dare",
-      description: "Fun Game Bot",
+      description: "Play Truth or Dare",
       color: "text-indigo-400",
     },
     {
-      name: "Tatsu",
-      description: "Social Features",
+      name: "Owo",
+      description: "Hunt, battle, and gamble",
       color: "text-emerald-400",
     },
   ],
 
   footer: {
     quote:
-      "I joined this server thinking it was about gaming, but apparently it's group therapy with extra steps and Discord Nitro.",
-    author: "Zero",
-    year: "2024",
+      "Thou hast scrolled too far to turn back now. Join the cursed fellowship",
+    author: "zero",
     channelName: "My Paradise",
     authorPhoto: "/logo.png",
   },
