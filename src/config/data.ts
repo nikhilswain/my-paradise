@@ -13,14 +13,12 @@ export const siteConfig = {
   },
 
   members: [
-    // Owner (1)
     {
       name: "Rex Lapis | 天妖神 🐉",
       role: "Owner",
       avatar: "/rex.webp",
       color: "from-red-500 to-orange-500",
     },
-    // Admins (3)
     {
       name: "amaju",
       role: "Admin",
@@ -50,6 +48,12 @@ export const siteConfig = {
       role: "Admin",
       avatar: "/mudit.webp",
       color: "from-teal-500 to-cyan-500",
+    },
+    {
+      name: "Yor Forger",
+      role: "Apprentice Achiever",
+      avatar: "/yor.webp",
+      color: "from-pink-500 to-red-500",
     },
   ],
 

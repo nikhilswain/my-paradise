@@ -257,13 +257,18 @@ export default function Component() {
           >
             {/* Server Photo */}
             <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-indigo-500/50 animate-pulse-glow">
-              <img
-                src={hero.channelPhoto || "/placeholder.svg"}
-                alt={hero.serverName}
-                className="w-full h-full object-cover saturate-150 contrast-125"
-              />
               {/* Inner glow */}
               <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 animate-pulse" />
+
+              <img
+                src={hero.channelPhoto}
+                alt={hero.serverName}
+                className="w-full h-full object-cover saturate-150 contrast-125"
+                onLoad={(e) => {
+                  e.currentTarget.classList.add("opacity-100");
+                }}
+                style={{ transition: "opacity 1s ease-in-out" }}
+              />
 
               {/* Energy rings */}
               <div className="absolute inset-0 rounded-full border-2 border-blue-400/50 animate-[energy-ring-1_2s_ease-out_infinite]" />
@@ -278,7 +283,7 @@ export default function Component() {
 
           <div className="text-center relative">
             {/* Main heading - no glitch */}
-            <h1 className="text-3xl md:text-5xl font-black mb-8 bg-gradient-to-r from-white via-indigo-200 via-purple-200 via-pink-200 to-yellow-200 bg-clip-text text-transparent leading-tight">
+            <h1 className="text-xl sm:text-3xl md:text-5xl font-black mb-8 bg-gradient-to-r from-white via-indigo-200 via-purple-200 via-pink-200 to-yellow-200 bg-clip-text text-transparent leading-tight">
               {hero.title}
             </h1>
             <p className="text-xl md:text-3xl text-slate-300 mb-4 max-w-3xl mx-auto font-medium">
@@ -294,7 +299,7 @@ export default function Component() {
           >
             <Button
               size="lg"
-              className="group relative px-16 py-8 text-2xl font-black bg-gradient-to-r from-indigo-600 via-purple-600 via-pink-600 to-red-600 hover:from-indigo-500 hover:via-purple-500 hover:via-pink-500 hover:to-red-500 transform hover:scale-125 transition-all duration-500 hover:shadow-2xl hover:shadow-purple-500/50 overflow-hidden border-2 border-purple-400/50"
+              className="group relative px-8 sm:px-16 py-8 text-2xl font-black bg-gradient-to-r from-indigo-600 via-purple-600 via-pink-600 to-red-600 hover:from-indigo-500 hover:via-purple-500 hover:via-pink-500 hover:to-red-500 transform hover:scale-125 transition-all duration-500 hover:shadow-2xl hover:shadow-purple-500/50 overflow-hidden border-2 border-purple-400/50"
               onClick={(e) => {
                 animateAndRedirect(e.currentTarget, hero.inviteLink);
               }}
@@ -538,7 +543,7 @@ export default function Component() {
           <div className="flex items-center justify-center gap-4 mb-6">
             <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-indigo-500">
               <img
-                src={footer.authorPhoto || "/placeholder.svg"}
+                src={footer.authorPhoto}
                 alt={footer.author}
                 className="w-full h-full object-cover"
               />
